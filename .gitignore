@@ -1,0 +1,54 @@
+# Visual Studio files
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Local development settings
+appsettings.Development.json
+appsettings.json
+*.Development.json
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Sensitive environment variables
+.env
+
+# MacOS specific files
+.DS_Store
+
+# Node
+node_modules/
+npm-debug.log
+
+# IDE specific files
+.idea/
+*.swp
+*.swo
+
+# Certificates
+*.pfx
+*.p12
+*.key 
