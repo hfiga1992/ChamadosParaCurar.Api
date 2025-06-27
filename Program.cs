@@ -15,12 +15,13 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAngularApp", builder =>
     {
         builder.WithOrigins(
-                "http://localhost:4201", 
+                "http://localhost:4201",
                 "http://localhost:4200",
                 "https://chamadosparacurar.onrender.com",
                 "https://chamadosparacurar-api.onrender.com",
                 "https://chamadosparacurar.vercel.app",
-                "https://chamados-para-curar.vercel.app"
+                "https://chamados-para-curar.vercel.app",
+                "https://chamados-para-curar-git-master-heitor-igas-projects.vercel.app"
             )
             .AllowAnyMethod()
             .AllowAnyHeader()
@@ -105,7 +106,7 @@ builder.Services.AddSwaggerGen(options =>
 
     // Adicionar exemplos para o modelo Devocional
     options.UseInlineDefinitionsForEnums();
-    
+
     // Incluir comentários XML para documentação
     var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -122,7 +123,7 @@ builder.Services.AddControllers(options =>
 .AddJsonOptions(options =>
 {
     // Ignorar valores nulos ao serializar para JSON
-    options.JsonSerializerOptions.DefaultIgnoreCondition = 
+    options.JsonSerializerOptions.DefaultIgnoreCondition =
         System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
 })
 .ConfigureApiBehaviorOptions(options =>
@@ -161,7 +162,7 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
+    var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
