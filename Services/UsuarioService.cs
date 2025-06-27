@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System;
 using System.Threading.Tasks;
+using System.Security.Authentication;
 
 namespace ChamadosParaCurar.Api.Services
 {
@@ -14,7 +15,14 @@ namespace ChamadosParaCurar.Api.Services
 
         public UsuarioService(IOptions<MongoDbSettings> mongoDbSettings)
         {
-            var mongoClient = new MongoClient(mongoDbSettings.Value.ConnectionString);
+            var settings = MongoClientSettings.FromConnectionString(mongoDbSettings.Value.ConnectionString);
+            settings.ServerApi = new ServerApi(ServerApiVersion.V1);
+            settings.SslSettings = new SslSettings
+            {
+                EnabledSslProtocols = System.Security.Authentication.SslProtocols.Tls12
+            };
+            
+            var mongoClient = new MongoClient(settings);
             var mongoDatabase = mongoClient.GetDatabase(mongoDbSettings.Value.DatabaseName);
             _usuarioCollection = mongoDatabase.GetCollection<Usuario>(
                 mongoDbSettings.Value.UsuarioCollectionName);
